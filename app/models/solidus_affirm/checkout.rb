@@ -1,5 +1,5 @@
 module SolidusAffirm
-  class Checkout < SolidusSupport.payment_source_parent_class
+  class Checkout < Spree::PaymentSource
     self.table_name = "affirm_checkouts"
 
     def reusable?
@@ -7,7 +7,7 @@ module SolidusAffirm
     end
 
     def actions
-      %w(capture void credit)
+      %w[capture void credit]
     end
 
     def can_capture?(payment)

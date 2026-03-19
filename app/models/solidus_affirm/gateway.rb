@@ -1,5 +1,5 @@
 module SolidusAffirm
-  class Gateway < SolidusSupport.payment_method_parent_class
+  class Gateway < Spree::PaymentMethod
     preference :public_api_key, :string
     preference :private_api_key, :string
     preference :javascript_url, :string
@@ -18,7 +18,7 @@ module SolidusAffirm
     end
 
     def partial_name
-      'affirm'
+      "affirm"
     end
     alias_method :method_type, :partial_name
 

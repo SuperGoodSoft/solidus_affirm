@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "spec_helper"
 
 RSpec.describe SolidusAffirm::AffirmClient do
   let(:gateway_options) do
@@ -49,6 +49,13 @@ RSpec.describe SolidusAffirm::AffirmClient do
       VCR.use_cassette("valid_capture") do
         response = subject.capture(nil, charge_id, {})
         expect(response.success?).to be_truthy
+      end
+    end
+
+    it "includes the charge_id" do
+      VCR.use_cassette("valid_capture") do
+        response = subject.capture(nil, charge_id, {})
+        expect(response.authorization).to eq charge_id
       end
     end
 
